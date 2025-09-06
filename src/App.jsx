@@ -1,6 +1,9 @@
 import { NavLink, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard.jsx";
+import Projects from "./pages/Projects.jsx";
+import Reports from "./pages/Reports.jsx";
 
+// Placeholder for Admin (until we make a proper Admin page)
 function Placeholder({ title }) {
   return (
     <div className="text-muted">
@@ -54,8 +57,8 @@ export default function App() {
         <div className="container-fluid p-4">
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/projects" element={<Placeholder title="Projects" />} />
-            <Route path="/reports" element={<Placeholder title="Reports" />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/reports" element={<Reports />} />
             <Route path="/admin" element={<Placeholder title="Admin" />} />
           </Routes>
         </div>
