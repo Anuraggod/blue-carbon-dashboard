@@ -1,68 +1,56 @@
-import { NavLink, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Dashboard from "./pages/Dashboard.jsx";
 import Projects from "./pages/Projects.jsx";
 import Reports from "./pages/Reports.jsx";
+import Admin from "./pages/Admin.jsx";
+import "./styles.css";
 
-// Placeholder for Admin (until we make a proper Admin page)
-function Placeholder({ title }) {
+function App() {
   return (
-    <div className="text-muted">
-      <h2 className="h4">{title}</h2>
-      <p>Coming soon…</p>
-    </div>
-  );
-}
-
-export default function App() {
-  return (
-    <div className="d-flex">
-      {/* Sidebar */}
-      <aside className="sidebar bg-white border-end">
-        <div className="p-3">
-          <div className="d-flex align-items-center gap-2 mb-3">
-            <div className="logo-dot"></div>
-            <span className="fw-semibold">Blue Carbon MRV</span>
-          </div>
-
-          <nav className="nav flex-column">
-            <NavLink end to="/" className="nav-link px-2">
-              <i className="bi bi-speedometer2 me-2" /> Dashboard
-            </NavLink>
-            <NavLink to="/projects" className="nav-link px-2">
-              <i className="bi bi-kanban me-2" /> Projects
-            </NavLink>
-            <NavLink to="/reports" className="nav-link px-2">
-              <i className="bi bi-graph-up-arrow me-2" /> Reports
-            </NavLink>
-            <NavLink to="/admin" className="nav-link px-2">
-              <i className="bi bi-shield-lock me-2" /> Admin
-            </NavLink>
-          </nav>
+    <Router>
+      <div className="d-flex">
+        {/* Sidebar */}
+        <div
+          className="bg-dark text-white p-3 vh-100"
+          style={{ width: "250px", position: "fixed", top: 0, left: 0 }}
+        >
+          <h2 className="mb-4">Blue Carbon</h2>
+          <ul className="nav flex-column">
+            <li className="nav-item mb-2">
+              <Link to="/" className="nav-link text-white">
+                Dashboard
+              </Link>
+            </li>
+            <li className="nav-item mb-2">
+              <Link to="/projects" className="nav-link text-white">
+                Projects
+              </Link>
+            </li>
+            <li className="nav-item mb-2">
+              <Link to="/reports" className="nav-link text-white">
+                Reports
+              </Link>
+            </li>
+            <li className="nav-item mb-2">
+              <Link to="/admin" className="nav-link text-white">
+                Admin
+              </Link>
+            </li>
+          </ul>
         </div>
-      </aside>
 
-      {/* Main area */}
-      <main className="flex-grow-1 min-vh-100 d-flex flex-column">
-        {/* Top bar */}
-        <header className="border-bottom bg-light">
-          <div className="container-fluid py-3 d-flex justify-content-between align-items-center">
-            <h1 className="h4 m-0">Dashboard</h1>
-            <button className="btn btn-outline-secondary">
-              <i className="bi bi-list" />
-            </button>
-          </div>
-        </header>
-
-        {/* Routed content */}
-        <div className="container-fluid p-4">
+        {/* Main Content */}
+        <div className="flex-grow-1 p-4" style={{ marginLeft: "250px" }}>
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/reports" element={<Reports />} />
-            <Route path="/admin" element={<Placeholder title="Admin" />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </div>
-      </main>
-    </div>
+      </div>
+    </Router>
   );
 }
+
+export default App;
